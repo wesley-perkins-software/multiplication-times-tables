@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>8 Times Table Practice</title>
+    <meta name="description" content="Practice the 8 times table with practice and timed modes." />
+    <link rel="canonical" href="https://example.com/8-times-table/" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <script src="/assets/js/app.js" type="module" defer></script>
+  </head>
+  <body data-mode="table" data-table="8">
+    <main class="container">
+      <header class="page-header">
+        <h1>8 Times Table Practice</h1>
+        <p class="intro">Practice multiplication facts with quick, focused drills. Choose practice or timed mode to match your goal.</p>
+      </header>
+
+      <section class="game" aria-live="polite">
+        <div class="mode-toggle" role="group" aria-label="Mode">
+          <button type="button" data-mode-button="practice">Practice</button>
+          <button type="button" data-mode-button="timed">Timed</button>
+        </div>
+
+        <div class="problem-card">
+          <div class="problem" data-problem>Question loads here</div>
+          <label class="answer-label" for="answer-input">Your answer</label>
+          <input id="answer-input" type="number" inputmode="numeric" autocomplete="off" />
+          <div class="feedback" data-feedback>Feedback appears here</div>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><span class="label">Streak</span><span data-streak>0</span></div>
+          <div class="stat"><span class="label">Best</span><span data-best-streak>0</span></div>
+          <div class="stat"><span class="label">Time</span><span data-time>60</span></div>
+          <div class="stat"><span class="label">Score</span><span data-score>0</span></div>
+          <div class="stat"><span class="label">Best</span><span data-best-score>0</span></div>
+        </div>
+
+        <button type="button" class="reset" data-reset>Reset</button>
+      </section>
+
+      <nav class="table-nav" aria-label="Times table pages">
+        <a href="/">Home (Mixed 1–12)</a>
+          <a href="/1-times-table/">1 Times Table</a>
+          <a href="/2-times-table/">2 Times Table</a>
+          <a href="/3-times-table/">3 Times Table</a>
+          <a href="/4-times-table/">4 Times Table</a>
+          <a href="/5-times-table/">5 Times Table</a>
+          <a href="/6-times-table/">6 Times Table</a>
+          <a href="/7-times-table/">7 Times Table</a>
+          <a href="/8-times-table/">8 Times Table</a>
+          <a href="/9-times-table/">9 Times Table</a>
+          <a href="/10-times-table/">10 Times Table</a>
+          <a href="/11-times-table/">11 Times Table</a>
+          <a href="/12-times-table/">12 Times Table</a>
+      </nav>
+
+      <section class="faq">
+        <h2>FAQ</h2>
+        <ul>
+          <li><strong>How does practice mode work?</strong> Answer as many in a row as you can to build a streak.</li>
+          <li><strong>What is timed mode?</strong> You have 60 seconds to answer as many as possible.</li>
+          <li><strong>Do I need to log in?</strong> No, this site works offline in your browser.</li>
+          <li><strong>Are answers saved?</strong> Best streaks and timed scores save locally.</li>
+          <li><strong>Can I use a keyboard?</strong> Yes, press Enter to submit.</li>
+          <li><strong>Is this free?</strong> Yes, it is a free practice tool.</li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
