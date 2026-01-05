@@ -1,15 +1,14 @@
 import { initGameState } from './game.js';
 import { bindUi } from './ui.js';
-import { readBestScores } from './storage.js';
 
 const body = document.body;
-const mode = body.dataset.mode || 'mixed';
+const pageMode = body.dataset.mode === 'table' ? 'table' : 'mixed';
 const tableNumber = body.dataset.table ? Number(body.dataset.table) : null;
 
 const config = {
-  mode,
+  mode: pageMode,
   tableNumber,
 };
 
-const state = initGameState(config, readBestScores(config));
-bindUi(state, config);
+const state = initGameState(config);
+bindUi(state);
