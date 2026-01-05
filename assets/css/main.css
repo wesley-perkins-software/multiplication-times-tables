@@ -1,0 +1,105 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: #f6f7fb;
+  color: #1f2937;
+}
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+.page-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.intro {
+  color: #4b5563;
+}
+.game {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  margin-bottom: 2rem;
+}
+.mode-toggle {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.mode-toggle button {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid #cbd5f5;
+  background: #eef2ff;
+  cursor: pointer;
+}
+.problem-card {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.problem {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+.answer-label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+#answer-input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 120px;
+}
+.feedback {
+  margin-top: 0.75rem;
+  min-height: 1.2rem;
+  color: #2563eb;
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.stat {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  justify-content: space-between;
+}
+.reset {
+  display: block;
+  margin: 0 auto;
+  padding: 0.5rem 1.25rem;
+  border: none;
+  background: #1d4ed8;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.table-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.table-nav a {
+  background: #e2e8f0;
+  color: #1f2937;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.faq ul {
+  padding-left: 1.2rem;
+}
+.faq li {
+  margin-bottom: 0.75rem;
+}
