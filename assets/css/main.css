@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, sans-serif;
-  background: #f6f7fb;
+  background: #f3f6fb;
   color: #1f2937;
 }
 .container {
@@ -18,32 +18,54 @@ body {
   color: #4b5563;
 }
 .game {
-  background: #fff;
+  background: #ffffff;
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
   margin-bottom: 2rem;
-}
-.mode-toggle {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-.mode-toggle button {
-  padding: 0.5rem 1rem;
-  border-radius: 999px;
-  border: 1px solid #cbd5f5;
-  background: #eef2ff;
-  cursor: pointer;
 }
 .problem-card {
   text-align: center;
   margin-bottom: 1rem;
 }
 .problem {
-  font-size: 2rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.problem-stack {
+  display: inline-block;
+  text-align: right;
+  min-width: 140px;
+}
+.operand-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.35rem;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  line-height: 1.1;
+}
+.operand-top {
+  padding-right: 0.25rem;
+}
+.operand-bottom .operator {
+  color: #1f2937;
+}
+.problem-rule {
+  height: 3px;
+  background: #1f2937;
+  margin-top: 0.35rem;
+  border-radius: 999px;
+}
+.sr-only {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }
 .answer-label {
   display: block;
@@ -53,20 +75,28 @@ body {
   padding: 0.5rem;
   font-size: 1rem;
   width: 120px;
+  border-radius: 8px;
+  border: 1px solid #c7d2fe;
 }
 .feedback {
   margin-top: 0.75rem;
   min-height: 1.2rem;
   color: #2563eb;
 }
+.feedback.is-correct {
+  color: #16a34a;
+}
+.feedback.is-incorrect {
+  color: #dc2626;
+}
 .stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 0.75rem;
   margin-bottom: 1rem;
 }
 .stat {
-  background: #f8fafc;
+  background: #e0e7ff;
   border-radius: 8px;
   padding: 0.5rem 0.75rem;
   display: flex;
@@ -77,10 +107,14 @@ body {
   margin: 0 auto;
   padding: 0.5rem 1.25rem;
   border: none;
-  background: #1d4ed8;
+  background: #2563eb;
   color: #fff;
   border-radius: 8px;
   cursor: pointer;
+}
+.reset:hover,
+.reset:focus {
+  background: #1d4ed8;
 }
 .table-nav {
   display: flex;
@@ -90,7 +124,7 @@ body {
   margin-bottom: 2rem;
 }
 .table-nav a {
-  background: #e2e8f0;
+  background: #e0e7ff;
   color: #1f2937;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
