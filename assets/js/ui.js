@@ -143,7 +143,7 @@ export function bindUi(state) {
       setFeedback('Correct!');
       updateBestScores();
     } else {
-      setFeedback(`Try again — correct was ${result.correctAnswer}`);
+      setFeedback(`Correct answer was ${result.correctAnswer}`);
     }
     input.value = '';
     prepareNextQuestion();
