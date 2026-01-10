@@ -16,7 +16,10 @@ function normalizeInput(value) {
   if (!trimmed) {
     return null;
   }
-  const parsed = Number(trimmed);
+  if (!/^[0-9]+$/.test(trimmed)) {
+    return null;
+  }
+  const parsed = Number.parseInt(trimmed, 10);
   return Number.isFinite(parsed) ? parsed : null;
 }
 
@@ -140,7 +143,7 @@ export function bindUi(state) {
       setFeedback('Correct!');
       updateBestScores();
     } else {
-      setFeedback(`Try again — correct was ${result.correctAnswer}`);
+      setFeedback(`Correct answer was ${result.correctAnswer}`);
     }
     input.value = '';
     prepareNextQuestion();
@@ -149,6 +152,12 @@ export function bindUi(state) {
   }
 
   if (input) {
+    input.addEventListener('input', () => {
+      const digitsOnly = input.value.replace(/[^0-9]/g, '');
+      if (input.value !== digitsOnly) {
+        input.value = digitsOnly;
+      }
+    });
     input.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === 'NumpadEnter') {
         event.preventDefault();
