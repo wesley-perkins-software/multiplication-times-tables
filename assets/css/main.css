@@ -173,6 +173,9 @@ body {
   flex-wrap: wrap;
   margin: -1rem 0 2rem;
 }
+.table-pager.align-right {
+  justify-content: flex-end;
+}
 .pager-link {
   color: #1d4ed8;
   text-decoration: none;
@@ -180,7 +183,7 @@ body {
 }
 .table-nav {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 0.5rem;
   justify-content: center;
 }
