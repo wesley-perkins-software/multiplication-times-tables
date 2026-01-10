@@ -23,27 +23,39 @@ function getKey(suffix) {
 // Read the best streak for a given mode.
 export function getBestStreak(modeKey) {
   const key = getKey(`bestStreak:${normalizeModeKey(modeKey)}`);
-  return toNumber(localStorage.getItem(key));
+  try {
+    return toNumber(localStorage.getItem(key));
+  } catch (error) {
+    return 0;
+  }
 }
 
 // Persist the best streak for a given mode.
 export function setBestStreak(modeKey, value) {
   const key = getKey(`bestStreak:${normalizeModeKey(modeKey)}`);
   const normalized = Math.max(0, Math.trunc(toNumber(value)));
-  localStorage.setItem(key, String(normalized));
-  return normalized;
+  try {
+    localStorage.setItem(key, String(normalized));
+    return normalized;
+  } catch (error) {
+    return 0;
+  }
 }
 
 // Remove all mtimes:v1 keys from localStorage.
 export function resetAllStats() {
-  const keysToRemove = [];
-  for (let index = 0; index < localStorage.length; index += 1) {
-    const key = localStorage.key(index);
-    if (key && key.startsWith(PREFIX)) {
-      keysToRemove.push(key);
+  try {
+    const keysToRemove = [];
+    for (let index = 0; index < localStorage.length; index += 1) {
+      const key = localStorage.key(index);
+      if (key && key.startsWith(PREFIX)) {
+        keysToRemove.push(key);
+      }
     }
+    keysToRemove.forEach((key) => localStorage.removeItem(key));
+  } catch (error) {
+    return;
   }
-  keysToRemove.forEach((key) => localStorage.removeItem(key));
 }
 
 // Backwards-compatible helper for the current app bootstrap.

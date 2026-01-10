@@ -16,9 +16,6 @@ function normalizeInput(value) {
   if (!trimmed) {
     return null;
   }
-  if (!/^[0-9]+$/.test(trimmed)) {
-    return null;
-  }
   const parsed = Number.parseInt(trimmed, 10);
   return Number.isFinite(parsed) ? parsed : null;
 }
@@ -41,6 +38,7 @@ export function bindUi(state) {
   const uiState = {
     isSubmitting: false,
     feedbackTimeoutId: null,
+    nextQuestionTimeoutId: null,
     bestStreak: getBestStreak(modeKey),
   };
 
@@ -113,6 +111,10 @@ export function bindUi(state) {
       input.value = '';
     }
     setFeedback('');
+    if (uiState.nextQuestionTimeoutId) {
+      clearTimeout(uiState.nextQuestionTimeoutId);
+      uiState.nextQuestionTimeoutId = null;
+    }
     prepareNextQuestion();
     updateStats();
   }
@@ -142,13 +144,30 @@ export function bindUi(state) {
     if (result.correct) {
       setFeedback('Correct!');
       updateBestScores();
-    } else {
-      setFeedback(`Correct answer was ${result.correctAnswer}`);
+      input.value = '';
+      prepareNextQuestion();
+      updateStats();
+      uiState.isSubmitting = false;
+      return;
     }
-    input.value = '';
-    prepareNextQuestion();
+
+    setFeedback(`Correct answer was ${result.correctAnswer}`);
     updateStats();
-    uiState.isSubmitting = false;
+    input.value = '';
+    if (input) {
+      input.disabled = true;
+    }
+    if (uiState.nextQuestionTimeoutId) {
+      clearTimeout(uiState.nextQuestionTimeoutId);
+    }
+    uiState.nextQuestionTimeoutId = window.setTimeout(() => {
+      if (input) {
+        input.disabled = false;
+      }
+      prepareNextQuestion();
+      uiState.isSubmitting = false;
+      uiState.nextQuestionTimeoutId = null;
+    }, 800);
   }
 
   if (input) {

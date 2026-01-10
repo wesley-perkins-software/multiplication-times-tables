@@ -55,7 +55,11 @@ export function getNextQuestion(state) {
   if (!state || typeof state !== 'object') {
     return null;
   }
-  const question = buildQuestion(state.config);
+  const previous = state.currentQuestion;
+  let question = buildQuestion(state.config);
+  if (previous && previous.a === question.a && previous.b === question.b) {
+    question = buildQuestion(state.config);
+  }
   state.currentQuestion = question;
   return question;
 }
