@@ -10,69 +10,81 @@
     <script src="/assets/js/app.js" type="module" defer></script>
   </head>
   <body data-mode="table" data-table="9">
-    <main class="container">
-      <header class="page-header">
-        <h1>9 Times Table Practice</h1>
-        <p class="intro">Practice the 9 times table by answering questions and building a streak.</p>
-      </header>
+    <div class="layout">
+      <aside class="ad-left"></aside>
+      <div class="main-content">
+        <main class="container">
+          <header class="page-header">
+            <h1>9 Times Table Practice</h1>
+            <p class="intro">Practice the 9 times table by answering questions and building a streak.</p>
+          </header>
 
-      <section class="game">
-        <div class="problem-card">
-          <div class="problem" data-problem>
-            <span class="sr-only" data-problem-text>Question loads here</span>
-            <div class="problem-stack" aria-hidden="true">
-              <div class="operand-row operand-top"><span class="operand" data-operand-a>12</span></div>
-              <div class="operand-row operand-bottom"><span class="operator">×</span><span class="operand" data-operand-b>4</span></div>
-              <div class="problem-rule"></div>
+          <nav class="table-pager" aria-label="Table navigation">
+            <a class="pager-link" href="/8-times-table/">← ×8</a>
+            <a class="pager-link" href="/10-times-table/">×10 →</a>
+          </nav>
+
+          <section class="game">
+            <div class="problem-card">
+              <div class="problem" data-problem>
+                <span class="sr-only" data-problem-text>Question loads here</span>
+                <div class="problem-stack" aria-hidden="true">
+                  <div class="operand-row operand-top"><span class="operand" data-operand-a>12</span></div>
+                  <div class="operand-row operand-bottom"><span class="operator">×</span><span class="operand" data-operand-b>4</span></div>
+                  <div class="problem-rule"></div>
+                </div>
+              </div>
+              <label class="answer-label" for="answer-input">Your answer</label>
+              <input
+                id="answer-input"
+                spellcheck="false"
+                autofocus
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]*"
+                enterkeyhint="done"
+                autocomplete="off"
+              />
+              <div class="feedback" data-feedback aria-live="polite"></div>
             </div>
+
+            <div class="stats">
+              <div class="stat"><span class="label">Current streak</span><span data-streak>0</span></div>
+              <div class="stat"><span class="label">Longest streak</span><span data-best-streak>0</span></div>
+            </div>
+
+            <button type="button" class="reset" data-reset>Reset</button>
+          </section>
+          <div class="table-chooser">
+            <a class="home-link" href="/">Home (Mixed 1–12)</a>
+            <nav class="table-nav" aria-label="Times table pages">
+              <a href="/1-times-table/">×1</a>
+              <a href="/2-times-table/">×2</a>
+              <a href="/3-times-table/">×3</a>
+              <a href="/4-times-table/">×4</a>
+              <a href="/5-times-table/">×5</a>
+              <a href="/6-times-table/">×6</a>
+              <a href="/7-times-table/">×7</a>
+              <a href="/8-times-table/">×8</a>
+              <a href="/9-times-table/" aria-current="page">×9</a>
+              <a href="/10-times-table/">×10</a>
+              <a href="/11-times-table/">×11</a>
+              <a href="/12-times-table/">×12</a>
+            </nav>
           </div>
-          <label class="answer-label" for="answer-input">Your answer</label>
-          <input
-            id="answer-input"
-            spellcheck="false"
-            autofocus
-            type="text"
-            inputmode="numeric"
-            pattern="[0-9]*"
-            enterkeyhint="done"
-            autocomplete="off"
-          />
-          <div class="feedback" data-feedback aria-live="polite"></div>
-        </div>
-
-        <div class="stats">
-          <div class="stat"><span class="label">Current streak</span><span data-streak>0</span></div>
-          <div class="stat"><span class="label">Longest streak</span><span data-best-streak>0</span></div>
-        </div>
-
-        <button type="button" class="reset" data-reset>Reset</button>
-      </section>
-
-      <nav class="table-nav" aria-label="Times table pages">
-        <a href="/">Home (Mixed 1–12)</a>
-          <a href="/1-times-table/">1 Times Table</a>
-          <a href="/2-times-table/">2 Times Table</a>
-          <a href="/3-times-table/">3 Times Table</a>
-          <a href="/4-times-table/">4 Times Table</a>
-          <a href="/5-times-table/">5 Times Table</a>
-          <a href="/6-times-table/">6 Times Table</a>
-          <a href="/7-times-table/">7 Times Table</a>
-          <a href="/8-times-table/">8 Times Table</a>
-          <a href="/9-times-table/" aria-current="page">9 Times Table</a>
-          <a href="/10-times-table/">10 Times Table</a>
-          <a href="/11-times-table/">11 Times Table</a>
-          <a href="/12-times-table/">12 Times Table</a>
-      </nav>
-      <section class="faq">
-        <h2>FAQ</h2>
-        <ul>
-          <li><strong>How does practice work?</strong> Answer questions in a row to build a streak.</li>
-          <li><strong>Do I need to log in?</strong> No, this site works offline in your browser.</li>
-          <li><strong>Are answers saved?</strong> Best streaks save locally.</li>
-          <li><strong>Can I use a keyboard?</strong> Yes, press Enter to submit.</li>
-          <li><strong>Is this free?</strong> Yes, it is a free practice tool.</li>
-        </ul>
-      </section>
-    </main>
+          <section class="faq">
+            <h2>FAQ</h2>
+            <ul>
+              <li><strong>How does practice work?</strong> Answer questions in a row to build a streak.</li>
+              <li><strong>Do I need to log in?</strong> No, this site works offline in your browser.</li>
+              <li><strong>Are answers saved?</strong> Best streaks save locally.</li>
+              <li><strong>Can I use a keyboard?</strong> Yes, press Enter to submit.</li>
+              <li><strong>Is this free?</strong> Yes, it is a free practice tool.</li>
+            </ul>
+          </section>
+        </main>
+      </div>
+      <aside class="ad-right"></aside>
+    </div>
   </body>
 </html>

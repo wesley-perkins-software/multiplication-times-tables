@@ -5,6 +5,23 @@ body {
   background: linear-gradient(180deg, #e0e7ff 0%, #f3f6fb 45%, #f3f6fb 100%);
   color: #1f2937;
 }
+.layout {
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) minmax(0, 960px) minmax(160px, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+  padding: 0 1rem;
+}
+.main-content {
+  width: 100%;
+}
+.ad-left,
+.ad-right {
+  min-height: 600px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px dashed #cbd5e1;
+}
 .container {
   max-width: 960px;
   margin: 0 auto;
@@ -131,12 +148,35 @@ body {
 .reset:focus {
   background: #1d4ed8;
 }
-.table-nav {
+.table-chooser {
   display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+.home-link {
+  color: #1d4ed8;
+  font-weight: 600;
+  text-decoration: none;
+  align-self: center;
+}
+.table-pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
   flex-wrap: wrap;
+  margin: -1rem 0 2rem;
+}
+.pager-link {
+  color: #1d4ed8;
+  text-decoration: none;
+  font-weight: 600;
+}
+.table-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
   gap: 0.5rem;
   justify-content: center;
-  margin-bottom: 2rem;
 }
 .table-nav a {
   background: #e0e7ff;
@@ -145,10 +185,28 @@ body {
   border-radius: 999px;
   text-decoration: none;
   font-size: 0.9rem;
+  text-align: center;
+}
+.table-nav a[aria-current="page"] {
+  background: #2563eb;
+  color: #fff;
 }
 .faq ul {
   padding-left: 1.2rem;
 }
 .faq li {
   margin-bottom: 0.75rem;
+}
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+    padding: 0;
+  }
+  .ad-left,
+  .ad-right {
+    display: none;
+  }
+  .table-pager {
+    justify-content: center;
+  }
 }
