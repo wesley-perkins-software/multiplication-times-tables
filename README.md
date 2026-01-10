@@ -1,2 +1,2 @@
-# multiplication-times-tables
-Practice multiplication times tables
+# multiplication times tables
+Practice multiplication times tables.
