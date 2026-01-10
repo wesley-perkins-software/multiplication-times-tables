@@ -52,7 +52,7 @@ export function bindUi(state) {
     feedback.classList.remove('is-correct', 'is-incorrect');
     if (message === 'Correct!') {
       feedback.classList.add('is-correct');
-    } else if (message.startsWith('Try again —')) {
+    } else if (message.startsWith('Try again —') || message.startsWith('Correct answer was')) {
       feedback.classList.add('is-incorrect');
     }
     if (uiState.feedbackTimeoutId) {
