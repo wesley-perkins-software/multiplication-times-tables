@@ -34,20 +34,6 @@ export function setBestStreak(modeKey, value) {
   return normalized;
 }
 
-// Read the best timed score for a given mode.
-export function getBestTimedScore(modeKey) {
-  const key = getKey(`bestTimed:${normalizeModeKey(modeKey)}`);
-  return toNumber(localStorage.getItem(key));
-}
-
-// Persist the best timed score for a given mode.
-export function setBestTimedScore(modeKey, value) {
-  const key = getKey(`bestTimed:${normalizeModeKey(modeKey)}`);
-  const normalized = Math.max(0, Math.trunc(toNumber(value)));
-  localStorage.setItem(key, String(normalized));
-  return normalized;
-}
-
 // Remove all mtimes:v1 keys from localStorage.
 export function resetAllStats() {
   const keysToRemove = [];
@@ -68,6 +54,5 @@ export function readBestScores(config) {
       : 'mixed';
   return {
     bestStreak: getBestStreak(modeKey),
-    bestTimed: getBestTimedScore(modeKey),
   };
 }
