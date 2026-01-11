@@ -33,19 +33,21 @@
                   <div class="problem-rule"></div>
                 </div>
               </div>
-              <label class="answer-label" for="answer-input">Your answer</label>
-              <input
-                id="answer-input"
-                spellcheck="false"
-                autofocus
-                type="text"
-                inputmode="numeric"
-                pattern="[0-9]*"
-                enterkeyhint="done"
-                autocomplete="off"
-              />
-              <div class="feedback" data-feedback aria-live="polite"></div>
-              <button type="button" class="submit" data-submit>Check</button>
+              <form class="answer-form" data-answer-form>
+                <label class="answer-label" for="answer-input">Your answer</label>
+                <input
+                  id="answer-input"
+                  spellcheck="false"
+                  autofocus
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  enterkeyhint="done"
+                  autocomplete="off"
+                />
+                <button type="submit" class="submit" data-submit>Check</button>
+                <div class="feedback" data-feedback aria-live="polite"></div>
+              </form>
             </div>
 
             <div class="stats">
