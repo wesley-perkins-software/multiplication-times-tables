@@ -47,11 +47,11 @@ button:focus-visible {
 .container {
   max-width: 100%;
   margin: 0 auto;
-  padding: 1.25rem 1.5rem 3rem;
+  padding: 1rem 1.5rem 3rem;
 }
 .page-header {
   text-align: center;
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.2rem;
 }
 .page-header h1 {
   margin-bottom: 0.6rem;
@@ -62,7 +62,7 @@ button:focus-visible {
   color: var(--muted);
   font-size: 1.1rem;
   max-width: 65ch;
-  margin: 0.5rem auto 0;
+  margin: 0.35rem auto 0;
 }
 .game {
   background: var(--card);
