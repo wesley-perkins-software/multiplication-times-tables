@@ -1,5 +1,5 @@
-import { checkAnswer, getNextQuestion, resetSession } from './game.js';
-import { getBestStreak, setBestStreak } from './storage.js';
+import { checkAnswer, getNextQuestion } from './game.js';
+import { getBestStreak, resetBestStreak, setBestStreak } from './storage.js';
 
 function getModeKey(config) {
   if (config.mode === 'table' && Number.isFinite(config.tableNumber)) {
@@ -30,8 +30,8 @@ export function bindUi(state) {
   const problemText = document.querySelector('[data-problem-text]');
   const input = document.querySelector('#answer-input');
   const feedback = document.querySelector('[data-feedback]');
-  const resetButton = document.querySelector('[data-reset]');
   const submitButton = document.querySelector('[data-submit]');
+  const resetCurrentButton = document.querySelector('[data-reset-current]');
 
   const streakValue = document.querySelector('[data-streak]');
   const bestStreakValue = document.querySelector('[data-best-streak]');
@@ -108,8 +108,8 @@ export function bindUi(state) {
     focusInput();
   }
 
-  function restartSession() {
-    resetSession(state);
+  function resetCurrentStreak() {
+    state.currentStreak = 0;
     if (input) {
       input.disabled = false;
       input.value = '';
@@ -121,6 +121,7 @@ export function bindUi(state) {
     }
     prepareNextQuestion();
     updateStats();
+    focusInput();
   }
 
   function updateBestScores() {
@@ -201,9 +202,10 @@ export function bindUi(state) {
     });
   }
 
-  if (resetButton) {
-    resetButton.addEventListener('click', () => {
-      restartSession();
+  if (resetCurrentButton) {
+    resetCurrentButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      resetCurrentStreak();
     });
   }
 
@@ -243,9 +245,21 @@ export function bindUi(state) {
       if (!ok) {
         return;
       }
-      setBestStreak(modeKey, 0);
+      resetBestStreak(modeKey);
+      state.currentStreak = 0;
+      if (input) {
+        input.disabled = false;
+        input.value = '';
+      }
+      setFeedback('');
+      if (uiState.nextQuestionTimeoutId) {
+        clearTimeout(uiState.nextQuestionTimeoutId);
+        uiState.nextQuestionTimeoutId = null;
+      }
+      prepareNextQuestion();
       uiState.bestStreak = 0;
       updateStats();
+      focusInput();
     });
   }
 

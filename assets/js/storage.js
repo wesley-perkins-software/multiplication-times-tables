@@ -42,6 +42,10 @@ export function setBestStreak(modeKey, value) {
   }
 }
 
+export function resetBestStreak(modeKey) {
+  return setBestStreak(modeKey, 0);
+}
+
 // Remove all mtimes:v1 keys from localStorage.
 export function resetAllStats() {
   try {

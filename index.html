@@ -45,12 +45,19 @@
             </div>
 
             <div class="stats">
-              <div class="stat"><span class="label">Current streak</span><span data-streak>0</span></div>
-              <div class="stat"><span class="label">Longest streak</span><span data-best-streak>0</span></div>
+              <div class="stat stat-current">
+                <div class="stat-text">
+                  <span class="label">Current streak</span><span data-streak>0</span>
+                </div>
+                <button type="button" class="stat-reset" data-reset-current>Reset current streak</button>
+              </div>
+              <div class="stat stat-best">
+                <div class="stat-text">
+                  <span class="label">Longest streak</span><span data-best-streak>0</span>
+                </div>
+                <button type="button" class="stat-reset stat-reset-best" data-reset-best>Reset best streak</button>
+              </div>
             </div>
-
-            <button type="button" class="reset" data-reset>Reset Streak</button>
-            <button type="button" class="reset-best" data-reset-best>Reset best streak</button>
           </section>
           <div class="table-chooser">
             <a class="home-link" href="/" aria-current="page">Home (Mixed 1–12)</a>

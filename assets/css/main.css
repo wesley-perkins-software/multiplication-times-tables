@@ -192,10 +192,17 @@ button:focus-visible {
   border-radius: 14px;
   padding: 0.8rem 1.1rem;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 0.4rem;
   font-weight: 600;
   border: 1px solid var(--tileBorder);
   transition: box-shadow 150ms ease, border-color 150ms ease;
+}
+.stat-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-weight: 700;
 }
 .stat.is-highlight {
   animation: statGlow 600ms ease-out;
@@ -214,44 +221,27 @@ button:focus-visible {
     border-color: var(--tileBorder);
   }
 }
-.reset {
-  display: block;
-  margin: 0 auto;
-  padding: 0.6rem 2.2rem;
-  border: 2px solid var(--primary2);
-  background: #fff;
-  color: var(--primary2);
-  border-radius: 999px;
-  cursor: pointer;
-  font-size: 0.95rem;
-  box-shadow: none;
-  transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease, color 140ms ease;
-}
-.reset:hover,
-.reset:focus {
-  background: rgba(37, 99, 235, 0.12);
-  color: #1d4ed8;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.2);
-}
-.reset:active {
-  transform: translateY(1px);
-}
-.reset-best {
-  display: block;
-  margin: 0.75rem auto 0;
-  padding: 0;
-  border: none;
+.stat-reset {
+  align-self: flex-start;
   background: transparent;
+  border: none;
   color: var(--primary);
-  font-weight: 600;
-  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0;
   text-decoration: underline;
   cursor: pointer;
+  font-size: 0.95rem;
 }
-.reset-best:hover,
-.reset-best:focus {
-  color: #5b21b6;
+.stat-reset:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 4px;
+}
+.stat-reset-best {
+  color: var(--muted);
+}
+.stat-reset-best:hover,
+.stat-reset-best:focus {
+  color: var(--primary);
 }
 .table-chooser {
   display: flex;
@@ -436,7 +426,6 @@ button:focus-visible {
 }
 @media (prefers-reduced-motion: reduce) {
   .table-nav a,
-  .reset,
   .home-link,
   .stat {
     transition: none;
