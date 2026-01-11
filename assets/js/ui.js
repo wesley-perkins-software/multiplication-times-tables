@@ -31,6 +31,7 @@ export function bindUi(state) {
   const input = document.querySelector('#answer-input');
   const feedback = document.querySelector('[data-feedback]');
   const resetButton = document.querySelector('[data-reset]');
+  const submitButton = document.querySelector('[data-submit]');
 
   const streakValue = document.querySelector('[data-streak]');
   const bestStreakValue = document.querySelector('[data-best-streak]');
@@ -43,6 +44,7 @@ export function bindUi(state) {
     bestStreak: getBestStreak(modeKey),
     bestStreakHighlightTimeoutId: null,
   };
+  let isTouchSubmit = false;
 
   function setFeedback(message) {
     if (!feedback) {
@@ -203,6 +205,34 @@ export function bindUi(state) {
     resetButton.addEventListener('click', () => {
       restartSession();
     });
+  }
+
+  if (submitButton) {
+    const triggerSubmit = () => {
+      if (uiState.isSubmitting) {
+        return;
+      }
+      handleSubmit();
+    };
+    submitButton.addEventListener('click', (event) => {
+      if (isTouchSubmit) {
+        event.preventDefault();
+        return;
+      }
+      triggerSubmit();
+    });
+    submitButton.addEventListener(
+      'touchend',
+      (event) => {
+        event.preventDefault();
+        isTouchSubmit = true;
+        triggerSubmit();
+        window.setTimeout(() => {
+          isTouchSubmit = false;
+        }, 400);
+      },
+      { passive: false },
+    );
   }
 
   const resetBestButton = document.querySelector('[data-reset-best]');

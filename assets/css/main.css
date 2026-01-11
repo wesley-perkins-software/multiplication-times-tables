@@ -158,6 +158,29 @@ button:focus-visible {
   color: var(--bad);
   background: rgba(220, 38, 38, 0.12);
 }
+.submit {
+  display: block;
+  margin: 0.85rem auto 0;
+  width: min(260px, 80%);
+  padding: 0.6rem 2rem;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 8px 18px rgba(109, 40, 217, 0.22);
+  transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
+}
+.submit:hover,
+.submit:focus {
+  background: #5b21b6;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(109, 40, 217, 0.28);
+}
+.submit:active {
+  transform: translateY(1px);
+}
 .stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
