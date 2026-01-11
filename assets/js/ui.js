@@ -1,5 +1,5 @@
-import { checkAnswer, getNextQuestion, resetSession } from './game.js';
-import { getBestStreak, resetAllStats, setBestStreak } from './storage.js';
+import { checkAnswer, getNextQuestion } from './game.js';
+import { getBestStreak, resetBestStreak, setBestStreak } from './storage.js';
 
 function getModeKey(config) {
   if (config.mode === 'table' && Number.isFinite(config.tableNumber)) {
@@ -30,11 +30,12 @@ export function bindUi(state) {
   const problemText = document.querySelector('[data-problem-text]');
   const input = document.querySelector('#answer-input');
   const feedback = document.querySelector('[data-feedback]');
-  const resetButton = document.querySelector('[data-reset]');
   const submitButton = document.querySelector('[data-submit]');
+  const resetCurrentButton = document.querySelector('[data-reset-current]');
 
   const streakValue = document.querySelector('[data-streak]');
   const bestStreakValue = document.querySelector('[data-best-streak]');
+  const currentStreakStat = streakValue?.closest('.stat') ?? null;
   const bestStreakStat = bestStreakValue?.closest('.stat') ?? null;
 
   const uiState = {
@@ -43,6 +44,7 @@ export function bindUi(state) {
     nextQuestionTimeoutId: null,
     bestStreak: getBestStreak(modeKey),
     bestStreakHighlightTimeoutId: null,
+    currentStreakHighlightTimeoutId: null,
   };
   let isTouchSubmit = false;
 
@@ -108,8 +110,8 @@ export function bindUi(state) {
     focusInput();
   }
 
-  function restartSession() {
-    resetSession(state);
+  function resetCurrentStreak() {
+    state.currentStreak = 0;
     if (input) {
       input.disabled = false;
       input.value = '';
@@ -121,23 +123,29 @@ export function bindUi(state) {
     }
     prepareNextQuestion();
     updateStats();
+    focusInput();
+  }
+
+  function triggerHighlight(statElement, timeoutKey) {
+    if (!statElement) {
+      return;
+    }
+    statElement.classList.remove('is-highlight');
+    void statElement.offsetWidth;
+    statElement.classList.add('is-highlight');
+    if (uiState[timeoutKey]) {
+      clearTimeout(uiState[timeoutKey]);
+    }
+    uiState[timeoutKey] = window.setTimeout(() => {
+      statElement.classList.remove('is-highlight');
+      uiState[timeoutKey] = null;
+    }, 750);
   }
 
   function updateBestScores() {
     if (state.currentStreak > uiState.bestStreak) {
       uiState.bestStreak = setBestStreak(modeKey, state.currentStreak);
-      if (bestStreakStat) {
-        bestStreakStat.classList.remove('is-highlight');
-        void bestStreakStat.offsetWidth;
-        bestStreakStat.classList.add('is-highlight');
-        if (uiState.bestStreakHighlightTimeoutId) {
-          clearTimeout(uiState.bestStreakHighlightTimeoutId);
-        }
-        uiState.bestStreakHighlightTimeoutId = window.setTimeout(() => {
-          bestStreakStat.classList.remove('is-highlight');
-          uiState.bestStreakHighlightTimeoutId = null;
-        }, 600);
-      }
+      triggerHighlight(bestStreakStat, 'bestStreakHighlightTimeoutId');
     }
   }
 
@@ -155,10 +163,14 @@ export function bindUi(state) {
       return;
     }
 
+    const previousStreak = state.currentStreak;
     uiState.isSubmitting = true;
     const result = checkAnswer(state, parsed);
     if (result.correct) {
       setFeedback('Correct!');
+      if (state.currentStreak > previousStreak) {
+        triggerHighlight(currentStreakStat, 'currentStreakHighlightTimeoutId');
+      }
       updateBestScores();
       input.value = '';
       prepareNextQuestion();
@@ -201,9 +213,10 @@ export function bindUi(state) {
     });
   }
 
-  if (resetButton) {
-    resetButton.addEventListener('click', () => {
-      restartSession();
+  if (resetCurrentButton) {
+    resetCurrentButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      resetCurrentStreak();
     });
   }
 
@@ -239,9 +252,25 @@ export function bindUi(state) {
   if (resetBestButton) {
     resetBestButton.addEventListener('click', (event) => {
       event.preventDefault();
-      resetAllStats();
+      const ok = window.confirm('Reset your longest streak for this table?');
+      if (!ok) {
+        return;
+      }
+      resetBestStreak(modeKey);
+      state.currentStreak = 0;
+      if (input) {
+        input.disabled = false;
+        input.value = '';
+      }
+      setFeedback('');
+      if (uiState.nextQuestionTimeoutId) {
+        clearTimeout(uiState.nextQuestionTimeoutId);
+        uiState.nextQuestionTimeoutId = null;
+      }
+      prepareNextQuestion();
       uiState.bestStreak = 0;
       updateStats();
+      focusInput();
     });
   }
 

@@ -46,15 +46,23 @@
                 autocomplete="off"
               />
               <div class="feedback" data-feedback aria-live="polite"></div>
-              <button type="button" class="submit" data-submit>Check</button>
+              <button type="button" class="submit" data-submit>Check Answer</button>
             </div>
 
             <div class="stats">
-              <div class="stat"><span class="label">Current streak</span><span data-streak>0</span></div>
-              <div class="stat"><span class="label">Longest streak</span><span data-best-streak>0</span></div>
+              <div class="stat stat-current">
+                <div class="stat-text">
+                  <span class="label">Current Streak</span><span data-streak>0</span>
+                </div>
+                <button type="button" class="stat-reset" data-reset-current>Reset Current Streak</button>
+              </div>
+              <div class="stat stat-best">
+                <div class="stat-text">
+                  <span class="label">Longest Streak</span><span data-best-streak>0</span>
+                </div>
+                <button type="button" class="stat-reset stat-reset-best" data-reset-best>Reset Longest Streak</button>
+              </div>
             </div>
-
-            <button type="button" class="reset" data-reset>Reset</button>
           </section>
           <section class="table-chart" aria-label="6 times table chart">
             <h2>6 Times Table Chart</h2>
