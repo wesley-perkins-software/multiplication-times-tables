@@ -349,9 +349,8 @@ button:focus-visible {
   border: 2px solid #e0e7ff;
   border-radius: 14px;
   padding: 0.7rem 0.75rem;
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
+  display: block;
+  text-align: center;
   font-weight: 700;
 }
 .chart-grid li span {
@@ -360,6 +359,8 @@ button:focus-visible {
 }
 .chart-grid li strong {
   color: #1d4ed8;
+  display: inline;
+  margin-left: 0.35rem;
 }
 .facts-list {
   margin: 0.5rem 0 0.75rem;
