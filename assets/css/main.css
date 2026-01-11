@@ -204,6 +204,13 @@ button:focus-visible {
   align-items: baseline;
   font-weight: 700;
 }
+.stat-text .label {
+  font-size: 0.95rem;
+}
+.stat-text [data-streak],
+.stat-text [data-best-streak] {
+  font-size: 1.5rem;
+}
 .stat.is-highlight {
   animation: statGlow 750ms ease-out;
 }
@@ -238,13 +245,6 @@ button:focus-visible {
 .stat-reset:focus-visible {
   outline: 3px solid var(--ring);
   outline-offset: 4px;
-}
-.stat-reset-best {
-  color: var(--muted);
-}
-.stat-reset-best:hover,
-.stat-reset-best:focus {
-  color: var(--primary);
 }
 .table-chooser {
   display: flex;
