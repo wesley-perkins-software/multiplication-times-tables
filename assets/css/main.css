@@ -47,11 +47,11 @@ button:focus-visible {
 .container {
   max-width: 100%;
   margin: 0 auto;
-  padding: 2rem 1.5rem 3rem;
+  padding: 1rem 1.5rem 3rem;
 }
 .page-header {
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 .page-header h1 {
   margin-bottom: 0.6rem;
