@@ -135,7 +135,7 @@ button:focus-visible {
   font-size: 1.05rem;
   padding: 0.35rem 0.85rem;
   border-radius: 999px;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   background: transparent;
