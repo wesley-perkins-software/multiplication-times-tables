@@ -296,11 +296,22 @@ button:focus-visible {
 .table-nav a[aria-current="page"]:focus {
   transform: translateY(-2px);
 }
-.faq ul {
-  padding-left: 1.2rem;
+.about-practice {
+  max-width: 720px;
+  margin: 0 auto;
 }
-.faq li {
-  margin-bottom: 0.75rem;
+.about-practice h2 {
+  margin-top: 2.5rem;
+  letter-spacing: -0.02em;
+}
+.about-practice-content h3 {
+  margin-top: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+.about-practice-content p {
+  margin: 0 0 0.75rem;
+  color: #475569;
+  line-height: 1.6;
 }
 @media (min-width: 640px) {
   .table-nav {
@@ -336,8 +347,4 @@ button:focus-visible {
   .stat.is-highlight {
     animation: none;
   }
-}
-.faq {
-  max-width: 65ch;
-  margin: 0 auto;
 }
