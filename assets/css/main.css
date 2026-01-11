@@ -313,6 +313,63 @@ button:focus-visible {
   color: #475569;
   line-height: 1.6;
 }
+.table-chart {
+  max-width: 720px;
+  margin: 0 auto 2rem;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid #cbd5e1;
+  border-radius: 18px;
+  padding: 1.25rem 1rem;
+}
+.table-chart h2 {
+  margin: 0 0 0.75rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+.chart-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+@media (min-width: 520px) {
+  .chart-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (min-width: 900px) {
+  .chart-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.chart-grid li {
+  background: #ffffff;
+  border: 2px solid #e0e7ff;
+  border-radius: 14px;
+  padding: 0.7rem 0.75rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-weight: 700;
+}
+.chart-grid li span {
+  color: #334155;
+  font-weight: 700;
+}
+.chart-grid li strong {
+  color: #1d4ed8;
+}
+.facts-list {
+  margin: 0.5rem 0 0.75rem;
+  padding-left: 1.25rem;
+  color: #475569;
+  line-height: 1.6;
+}
+.facts-list li {
+  margin-bottom: 0.5rem;
+}
 @media (min-width: 640px) {
   .table-nav {
     grid-template-columns: repeat(3, minmax(0, 1fr));
