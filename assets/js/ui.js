@@ -44,6 +44,7 @@ export function bindUi(state) {
     bestStreak: getBestStreak(modeKey),
     bestStreakHighlightTimeoutId: null,
   };
+  let isTouchSubmit = false;
 
   function setFeedback(message) {
     if (!feedback) {
@@ -207,12 +208,31 @@ export function bindUi(state) {
   }
 
   if (submitButton) {
-    submitButton.addEventListener('click', () => {
+    const triggerSubmit = () => {
       if (uiState.isSubmitting) {
         return;
       }
       handleSubmit();
+    };
+    submitButton.addEventListener('click', (event) => {
+      if (isTouchSubmit) {
+        event.preventDefault();
+        return;
+      }
+      triggerSubmit();
     });
+    submitButton.addEventListener(
+      'touchend',
+      (event) => {
+        event.preventDefault();
+        isTouchSubmit = true;
+        triggerSubmit();
+        window.setTimeout(() => {
+          isTouchSubmit = false;
+        }, 400);
+      },
+      { passive: false },
+    );
   }
 
   const resetBestButton = document.querySelector('[data-reset-best]');
