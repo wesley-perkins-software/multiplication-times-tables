@@ -31,6 +31,7 @@ export function bindUi(state) {
   const input = document.querySelector('#answer-input');
   const feedback = document.querySelector('[data-feedback]');
   const resetButton = document.querySelector('[data-reset]');
+  const submitButton = document.querySelector('[data-submit]');
 
   const streakValue = document.querySelector('[data-streak]');
   const bestStreakValue = document.querySelector('[data-best-streak]');
@@ -202,6 +203,15 @@ export function bindUi(state) {
   if (resetButton) {
     resetButton.addEventListener('click', () => {
       restartSession();
+    });
+  }
+
+  if (submitButton) {
+    submitButton.addEventListener('click', () => {
+      if (uiState.isSubmitting) {
+        return;
+      }
+      handleSubmit();
     });
   }
 
