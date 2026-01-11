@@ -1,5 +1,5 @@
 import { checkAnswer, getNextQuestion, resetSession } from './game.js';
-import { getBestStreak, resetAllStats, setBestStreak } from './storage.js';
+import { getBestStreak, setBestStreak } from './storage.js';
 
 function getModeKey(config) {
   if (config.mode === 'table' && Number.isFinite(config.tableNumber)) {
@@ -239,7 +239,11 @@ export function bindUi(state) {
   if (resetBestButton) {
     resetBestButton.addEventListener('click', (event) => {
       event.preventDefault();
-      resetAllStats();
+      const ok = window.confirm('Reset your best streak for this table?');
+      if (!ok) {
+        return;
+      }
+      setBestStreak(modeKey, 0);
       uiState.bestStreak = 0;
       updateStats();
     });
