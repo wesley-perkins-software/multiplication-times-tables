@@ -205,20 +205,23 @@ button:focus-visible {
   font-weight: 700;
 }
 .stat.is-highlight {
-  animation: statGlow 600ms ease-out;
+  animation: statGlow 750ms ease-out;
 }
 @keyframes statGlow {
   0% {
     box-shadow: 0 0 0 rgba(109, 40, 217, 0);
     border-color: var(--tileBorder);
+    transform: scale(1);
   }
-  40% {
-    box-shadow: 0 0 18px rgba(109, 40, 217, 0.35);
+  35% {
+    box-shadow: 0 0 26px rgba(109, 40, 217, 0.55);
     border-color: var(--primary);
+    transform: scale(1.02);
   }
   100% {
     box-shadow: 0 0 0 rgba(109, 40, 217, 0);
     border-color: var(--tileBorder);
+    transform: scale(1);
   }
 }
 .stat-reset {

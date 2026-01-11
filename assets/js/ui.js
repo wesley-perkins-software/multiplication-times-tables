@@ -35,6 +35,7 @@ export function bindUi(state) {
 
   const streakValue = document.querySelector('[data-streak]');
   const bestStreakValue = document.querySelector('[data-best-streak]');
+  const currentStreakStat = streakValue?.closest('.stat') ?? null;
   const bestStreakStat = bestStreakValue?.closest('.stat') ?? null;
 
   const uiState = {
@@ -43,6 +44,7 @@ export function bindUi(state) {
     nextQuestionTimeoutId: null,
     bestStreak: getBestStreak(modeKey),
     bestStreakHighlightTimeoutId: null,
+    currentStreakHighlightTimeoutId: null,
   };
   let isTouchSubmit = false;
 
@@ -124,21 +126,26 @@ export function bindUi(state) {
     focusInput();
   }
 
+  function triggerHighlight(statElement, timeoutKey) {
+    if (!statElement) {
+      return;
+    }
+    statElement.classList.remove('is-highlight');
+    void statElement.offsetWidth;
+    statElement.classList.add('is-highlight');
+    if (uiState[timeoutKey]) {
+      clearTimeout(uiState[timeoutKey]);
+    }
+    uiState[timeoutKey] = window.setTimeout(() => {
+      statElement.classList.remove('is-highlight');
+      uiState[timeoutKey] = null;
+    }, 750);
+  }
+
   function updateBestScores() {
     if (state.currentStreak > uiState.bestStreak) {
       uiState.bestStreak = setBestStreak(modeKey, state.currentStreak);
-      if (bestStreakStat) {
-        bestStreakStat.classList.remove('is-highlight');
-        void bestStreakStat.offsetWidth;
-        bestStreakStat.classList.add('is-highlight');
-        if (uiState.bestStreakHighlightTimeoutId) {
-          clearTimeout(uiState.bestStreakHighlightTimeoutId);
-        }
-        uiState.bestStreakHighlightTimeoutId = window.setTimeout(() => {
-          bestStreakStat.classList.remove('is-highlight');
-          uiState.bestStreakHighlightTimeoutId = null;
-        }, 600);
-      }
+      triggerHighlight(bestStreakStat, 'bestStreakHighlightTimeoutId');
     }
   }
 
@@ -156,10 +163,14 @@ export function bindUi(state) {
       return;
     }
 
+    const previousStreak = state.currentStreak;
     uiState.isSubmitting = true;
     const result = checkAnswer(state, parsed);
     if (result.correct) {
       setFeedback('Correct!');
+      if (state.currentStreak > previousStreak) {
+        triggerHighlight(currentStreakStat, 'currentStreakHighlightTimeoutId');
+      }
       updateBestScores();
       input.value = '';
       prepareNextQuestion();
