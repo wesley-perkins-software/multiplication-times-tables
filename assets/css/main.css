@@ -1,18 +1,21 @@
 * { box-sizing: border-box; }
 :root {
-  --bg1: #fce7ff;
-  --bg2: #e0f2fe;
+  --bg1: #f6edff;
+  --bg2: #e8f4ff;
   --card: #ffffff;
-  --text: #1f2937;
+  --text: #1b2433;
   --muted: #526175;
-  --primary: #7c3aed;
-  --primary2: #2563eb;
-  --accent: #f97316;
-  --good: #16a34a;
+  --primary: #6d28d9;
+  --primary2: #1d4ed8;
+  --ring: rgba(109, 40, 217, 0.35);
+  --good: #15803d;
   --bad: #dc2626;
+  --shadow: rgba(15, 23, 42, 0.14);
+  --shadow2: rgba(15, 23, 42, 0.08);
+  --tile: #f8fafc;
+  --tileHover: #eef2ff;
+  --tileBorder: #c7d2fe;
   --border: #d6d8ef;
-  --shadow: rgba(15, 23, 42, 0.12);
-  --ring: rgba(124, 58, 237, 0.35);
 }
 body {
   margin: 0;
@@ -28,7 +31,7 @@ button:focus-visible {
 .layout {
   max-width: 980px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
 }
 .main-content {
   width: 100%;
@@ -50,16 +53,23 @@ button:focus-visible {
   text-align: center;
   margin-bottom: 2.5rem;
 }
+.page-header h1 {
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.015em;
+  line-height: 1.2;
+}
 .intro {
   color: var(--muted);
   font-size: 1.1rem;
+  max-width: 65ch;
+  margin: 0.5rem auto 0;
 }
 .game {
   background: var(--card);
   border-radius: 28px;
   padding: 2.5rem 2rem;
   box-shadow: 0 14px 30px var(--shadow);
-  border: 2px solid var(--border);
+  border: 2px solid var(--tileBorder);
   margin-bottom: 2rem;
 }
 .problem-card {
@@ -92,7 +102,7 @@ button:focus-visible {
 }
 .problem-rule {
   height: 4px;
-  background: var(--border);
+  background: var(--tileBorder);
   margin-top: 0.6rem;
   border-radius: 999px;
 }
@@ -120,7 +130,7 @@ button:focus-visible {
   border: 3px solid var(--primary2);
   background: var(--card);
   box-shadow: 0 6px 16px rgba(37, 99, 235, 0.16);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 140ms ease, box-shadow 140ms ease;
 }
 #answer-input:focus,
 #answer-input:focus-visible {
@@ -130,19 +140,19 @@ button:focus-visible {
 }
 .feedback {
   margin-top: 0.75rem;
-  min-height: 1.75rem;
+  min-height: 2.1rem;
   color: var(--primary2);
   font-size: 1.05rem;
-  padding: 0.35rem 0.85rem;
+  padding: 0.4rem 0.9rem;
   border-radius: 999px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
+  background: rgba(59, 130, 246, 0.08);
 }
 .feedback.is-correct {
   color: var(--good);
-  background: rgba(22, 163, 74, 0.12);
+  background: rgba(21, 128, 61, 0.12);
 }
 .feedback.is-incorrect {
   color: var(--bad);
@@ -155,13 +165,31 @@ button:focus-visible {
   margin-bottom: 1rem;
 }
 .stat {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 18px;
-  padding: 0.75rem 1rem;
+  background: var(--tile);
+  border-radius: 14px;
+  padding: 0.8rem 1.1rem;
   display: flex;
   justify-content: space-between;
   font-weight: 600;
-  border: 2px solid var(--border);
+  border: 1px solid var(--tileBorder);
+  transition: box-shadow 150ms ease, border-color 150ms ease;
+}
+.stat.is-highlight {
+  animation: statGlow 600ms ease-out;
+}
+@keyframes statGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(109, 40, 217, 0);
+    border-color: var(--tileBorder);
+  }
+  40% {
+    box-shadow: 0 0 18px rgba(109, 40, 217, 0.35);
+    border-color: var(--primary);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(109, 40, 217, 0);
+    border-color: var(--tileBorder);
+  }
 }
 .reset {
   display: block;
@@ -174,7 +202,7 @@ button:focus-visible {
   cursor: pointer;
   font-size: 1.05rem;
   box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
 }
 .reset:hover,
 .reset:focus {
@@ -183,7 +211,7 @@ button:focus-visible {
   box-shadow: 0 12px 24px rgba(37, 99, 235, 0.3);
 }
 .reset:active {
-  transform: translateY(0);
+  transform: translateY(1px);
 }
 .table-chooser {
   display: flex;
@@ -206,13 +234,14 @@ button:focus-visible {
   padding: 0.3rem 0.9rem;
   border-radius: 999px;
   background: #fff;
-  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  transition: transform 140ms ease, background 140ms ease, color 140ms ease, box-shadow 140ms ease;
 }
 .home-link:hover,
 .home-link:focus {
   background: var(--primary2);
   color: #fff;
   transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(29, 78, 216, 0.2);
 }
 .table-pager {
   display: flex;
@@ -231,27 +260,31 @@ button:focus-visible {
 }
 .table-nav {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
 }
 .table-nav a {
-  background: var(--card);
+  background: var(--tile);
   color: var(--text);
-  padding: 0.85rem 0.5rem;
-  border-radius: 22px;
+  padding: 0.95rem 0.65rem;
+  border-radius: 20px;
   text-decoration: none;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   text-align: center;
   font-weight: 700;
-  border: 2px solid var(--border);
-  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+  border: 2px solid var(--tileBorder);
+  box-shadow: 0 6px 14px var(--shadow2);
+  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease, background 140ms ease, color 140ms ease;
 }
 .table-nav a:hover,
 .table-nav a:focus {
   transform: translateY(-3px);
   border-color: var(--primary2);
-  box-shadow: 0 10px 18px rgba(15, 23, 42, 0.16);
+  box-shadow: 0 12px 20px rgba(15, 23, 42, 0.16);
+  background: var(--tileHover);
+}
+.table-nav a:active {
+  transform: translateY(1px);
 }
 .table-nav a[aria-current="page"] {
   background: var(--primary);
@@ -271,10 +304,18 @@ button:focus-visible {
 }
 @media (min-width: 640px) {
   .table-nav {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
-@media (min-width: 960px) {
+@media (min-width: 820px) {
+  .table-nav {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .stat {
+    box-shadow: 0 8px 18px var(--shadow2);
+  }
+}
+@media (min-width: 1020px) {
   .table-nav {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
@@ -287,8 +328,16 @@ button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .table-nav a,
   .reset,
-  .home-link {
+  .home-link,
+  .stat {
     transition: none;
     transform: none;
   }
+  .stat.is-highlight {
+    animation: none;
+  }
+}
+.faq {
+  max-width: 65ch;
+  margin: 0 auto;
 }

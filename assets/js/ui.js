@@ -34,12 +34,14 @@ export function bindUi(state) {
 
   const streakValue = document.querySelector('[data-streak]');
   const bestStreakValue = document.querySelector('[data-best-streak]');
+  const bestStreakStat = bestStreakValue?.closest('.stat') ?? null;
 
   const uiState = {
     isSubmitting: false,
     feedbackTimeoutId: null,
     nextQuestionTimeoutId: null,
     bestStreak: getBestStreak(modeKey),
+    bestStreakHighlightTimeoutId: null,
   };
 
   function setFeedback(message) {
@@ -122,6 +124,18 @@ export function bindUi(state) {
   function updateBestScores() {
     if (state.currentStreak > uiState.bestStreak) {
       uiState.bestStreak = setBestStreak(modeKey, state.currentStreak);
+      if (bestStreakStat) {
+        bestStreakStat.classList.remove('is-highlight');
+        void bestStreakStat.offsetWidth;
+        bestStreakStat.classList.add('is-highlight');
+        if (uiState.bestStreakHighlightTimeoutId) {
+          clearTimeout(uiState.bestStreakHighlightTimeoutId);
+        }
+        uiState.bestStreakHighlightTimeoutId = window.setTimeout(() => {
+          bestStreakStat.classList.remove('is-highlight');
+          uiState.bestStreakHighlightTimeoutId = null;
+        }, 600);
+      }
     }
   }
 
