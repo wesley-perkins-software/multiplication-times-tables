@@ -72,6 +72,9 @@ button:focus-visible {
   border: 2px solid var(--tileBorder);
   margin-bottom: 3.5rem;
 }
+body[data-mode="table"] .game {
+  padding-bottom: 2rem;
+}
 .problem-card {
   text-align: center;
   margin-bottom: 2rem;
@@ -284,7 +287,7 @@ button:focus-visible {
   margin: 0;
 }
 .game .table-pager {
-  margin-top: 1rem;
+  margin-top: 0.75rem;
 }
 .table-pager.align-right {
   justify-content: flex-end;
