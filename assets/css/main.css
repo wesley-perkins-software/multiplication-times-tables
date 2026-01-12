@@ -328,14 +328,23 @@ button:focus-visible {
 }
 .stat-reset {
   align-self: flex-start;
-  background: transparent;
-  border: none;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-ring);
   color: var(--accent);
   font-weight: 700;
-  padding: 0;
-  text-decoration: underline;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  text-decoration: none;
   cursor: pointer;
   font-size: 0.95rem;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+.stat-reset:hover,
+.stat-reset:focus-visible {
+  background: var(--accent-ring);
+  border-color: var(--accent);
+  color: var(--accent-2);
+  box-shadow: 0 6px 12px var(--accent-soft);
 }
 .stat-reset:focus-visible {
   outline: 3px solid var(--accent-ring);
