@@ -300,7 +300,7 @@ button:focus-visible {
   font-weight: 700;
 }
 .stat-text .label {
-  font-size: 0.95rem;
+  font-size: 1.1rem;
 }
 .stat-text [data-streak],
 .stat-text [data-best-streak] {
