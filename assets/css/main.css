@@ -23,6 +23,15 @@ body {
   background: linear-gradient(160deg, var(--bg1) 0%, var(--bg2) 55%, #f8fafc 100%);
   color: var(--text);
 }
+body[data-mode="table"] {
+  background:
+    linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--accent-soft) 50%, transparent) 0%,
+      transparent 60%
+    ),
+    linear-gradient(160deg, var(--bg1) 0%, var(--bg2) 55%, #f8fafc 100%);
+}
 :root {
   --accent: #2563eb;
   --accent-2: #1d4ed8;
