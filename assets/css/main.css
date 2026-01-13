@@ -217,8 +217,11 @@ button:focus-visible {
   color: var(--muted);
 }
 #answer-input {
-  padding: 0.75rem;
-  font-size: 2rem;
+  font-size: clamp(2.2rem, 6vw, 3rem);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.6rem 0.75rem;
   width: min(320px, 80%);
   text-align: center;
   border-radius: 16px;
@@ -232,6 +235,12 @@ button:focus-visible {
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 0 4px var(--accent-ring);
+}
+@media (max-width: 600px) {
+  #answer-input {
+    font-size: 3rem;
+    padding: 0.5rem 0.6rem;
+  }
 }
 .feedback {
   margin-top: 0.75rem;
