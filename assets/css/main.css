@@ -535,3 +535,29 @@ button:focus-visible {
     animation: none;
   }
 }
+.site-footer {
+  margin-top: 3rem;
+  padding: 2rem 0 1rem;
+  text-align: center;
+  color: #4b5563;
+}
+.footer-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+.footer-links a {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+.footer-links a:hover,
+.footer-links a:focus {
+  text-decoration: underline;
+}
+.footer-meta {
+  margin: 0;
+  font-size: 0.95rem;
+}
