@@ -59,10 +59,10 @@ body[data-theme="table-2"] {
   --accent-ring: rgba(249, 115, 22, 0.28);
 }
 body[data-theme="table-3"] {
-  --accent: #eab308;
-  --accent-2: #ca8a04;
-  --accent-soft: rgba(234, 179, 8, 0.14);
-  --accent-ring: rgba(234, 179, 8, 0.28);
+  --accent: #b45309;
+  --accent-2: #92400e;
+  --accent-soft: rgba(180, 83, 9, 0.14);
+  --accent-ring: rgba(180, 83, 9, 0.28);
 }
 body[data-theme="table-4"] {
   --accent: #22c55e;
@@ -101,10 +101,10 @@ body[data-theme="table-9"] {
   --accent-ring: rgba(217, 70, 239, 0.28);
 }
 body[data-theme="table-10"] {
-  --accent: #0f172a;
-  --accent-2: #111827;
-  --accent-soft: rgba(15, 23, 42, 0.1);
-  --accent-ring: rgba(15, 23, 42, 0.18);
+  --accent: #ec4899;
+  --accent-2: #db2777;
+  --accent-soft: rgba(236, 72, 153, 0.14);
+  --accent-ring: rgba(236, 72, 153, 0.28);
 }
 body[data-theme="table-11"] {
   --accent: #a855f7;
@@ -113,10 +113,10 @@ body[data-theme="table-11"] {
   --accent-ring: rgba(168, 85, 247, 0.28);
 }
 body[data-theme="table-12"] {
-  --accent: #7c3aed;
-  --accent-2: #6d28d9;
-  --accent-soft: rgba(124, 58, 237, 0.14);
-  --accent-ring: rgba(124, 58, 237, 0.28);
+  --accent: #84cc16;
+  --accent-2: #65a30d;
+  --accent-soft: rgba(132, 204, 22, 0.14);
+  --accent-ring: rgba(132, 204, 22, 0.28);
 }
 a:focus-visible,
 button:focus-visible {
