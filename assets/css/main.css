@@ -113,10 +113,10 @@ body[data-theme="table-11"] {
   --accent-ring: rgba(168, 85, 247, 0.28);
 }
 body[data-theme="table-12"] {
-  --accent: #7c3aed;
-  --accent-2: #6d28d9;
-  --accent-soft: rgba(124, 58, 237, 0.14);
-  --accent-ring: rgba(124, 58, 237, 0.28);
+  --accent: #84cc16;
+  --accent-2: #65a30d;
+  --accent-soft: rgba(132, 204, 22, 0.14);
+  --accent-ring: rgba(132, 204, 22, 0.28);
 }
 a:focus-visible,
 button:focus-visible {
