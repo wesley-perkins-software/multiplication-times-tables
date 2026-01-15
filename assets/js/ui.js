@@ -23,6 +23,8 @@ function normalizeInput(value) {
 export function bindUi(state) {
   const config = state?.config ?? { mode: 'mixed', tableNumber: null };
   const modeKey = getModeKey(config);
+  const eventMode = config.mode === 'table' ? 'table' : 'mixed';
+  const eventTable = Number.isFinite(config.tableNumber) ? config.tableNumber : null;
 
   const problem = document.querySelector('[data-problem]');
   const operandA = document.querySelector('[data-operand-a]');
@@ -47,6 +49,13 @@ export function bindUi(state) {
     currentStreakHighlightTimeoutId: null,
   };
   let isTouchSubmit = false;
+
+  function track(eventName, params = {}) {
+    if (typeof window.mtimesTrack !== 'function') {
+      return;
+    }
+    window.mtimesTrack(eventName, params);
+  }
 
   function setFeedback(message) {
     if (!feedback) {
@@ -163,10 +172,12 @@ export function bindUi(state) {
       return;
     }
 
+    track('check_answer', { mode: eventMode, table: eventTable });
     const previousStreak = state.currentStreak;
     uiState.isSubmitting = true;
     const result = checkAnswer(state, parsed);
     if (result.correct) {
+      track('correct_answer', { mode: eventMode, table: eventTable });
       setFeedback('Correct!');
       if (state.currentStreak > previousStreak) {
         triggerHighlight(currentStreakStat, 'currentStreakHighlightTimeoutId');
@@ -179,6 +190,7 @@ export function bindUi(state) {
       return;
     }
 
+    track('incorrect_answer', { mode: eventMode, table: eventTable });
     setFeedback(`Correct answer was ${result.correctAnswer}`);
     updateStats();
     input.value = '';
@@ -216,6 +228,11 @@ export function bindUi(state) {
   if (resetCurrentButton) {
     resetCurrentButton.addEventListener('click', (event) => {
       event.preventDefault();
+      track('reset_streak', {
+        streak_type: 'current',
+        mode: eventMode,
+        table: eventTable,
+      });
       resetCurrentStreak();
     });
   }
@@ -256,6 +273,11 @@ export function bindUi(state) {
       if (!ok) {
         return;
       }
+      track('reset_streak', {
+        streak_type: 'longest',
+        mode: eventMode,
+        table: eventTable,
+      });
       resetBestStreak(modeKey);
       state.currentStreak = 0;
       if (input) {
@@ -273,6 +295,16 @@ export function bindUi(state) {
       focusInput();
     });
   }
+
+  document.querySelectorAll('.table-nav a').forEach((link) => {
+    link.addEventListener('click', () => {
+      track('table_change', {
+        from_mode: eventMode,
+        from_table: eventTable,
+        to_path: link.getAttribute('href'),
+      });
+    });
+  });
 
   prepareNextQuestion();
   updateStats();
