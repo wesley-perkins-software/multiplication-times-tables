@@ -343,14 +343,18 @@ button:focus-visible {
   0% {
     border-color: var(--tileBorder);
     background: var(--tile);
+    box-shadow: inset 0 0 0 0 transparent;
   }
   35% {
     border-color: var(--accent);
-    background: color-mix(in srgb, var(--accent-soft) 35%, var(--tile));
+    background: color-mix(in srgb, var(--accent-soft) 45%, var(--tile));
+    box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent),
+      inset 0 0 20px color-mix(in srgb, var(--accent-soft) 60%, transparent);
   }
   100% {
     border-color: var(--tileBorder);
     background: var(--tile);
+    box-shadow: inset 0 0 0 0 transparent;
   }
 }
 .stat-reset {
