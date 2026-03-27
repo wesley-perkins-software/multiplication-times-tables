@@ -145,6 +145,21 @@ button:focus-visible {
   margin: 0 auto;
   padding: 1rem 1.5rem 3rem;
 }
+.site-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+.site-brand {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--accent-2);
+  text-decoration: none;
+}
+.site-brand:hover {
+  text-decoration: underline;
+}
 .page-header {
   text-align: center;
   margin-bottom: 1.5rem;
