@@ -438,11 +438,19 @@ button:focus-visible {
 .table-nav a {
   background: var(--nt-soft, var(--tile));
   color: var(--nt2, var(--text));
+  width: min(100%, 11.5rem);
+  min-height: 8.75rem;
+  margin: 0 auto;
   padding: 0.95rem 0.65rem;
   border-radius: 20px;
   text-decoration: none;
   font-size: 1.05rem;
+  line-height: 1.28;
   text-align: center;
+  text-wrap: balance;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 700;
   border: 2px solid var(--nt-border, var(--tileBorder));
   box-shadow: 0 6px 14px var(--shadow2);
