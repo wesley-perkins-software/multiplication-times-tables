@@ -16,21 +16,21 @@ export function launchConfetti() {
   canvas.height = window.innerHeight;
 
   const COLORS = ['#6366f1', '#f59e0b', '#10b981', '#ef4444', '#3b82f6', '#ec4899', '#84cc16'];
-  const DURATION = 1500;
-  const COUNT = 72;
+  const DURATION = 1000;
+  const COUNT = 28;
 
   // Burst from the vertical centre of the viewport — roughly where the problem card lives.
   const originX = canvas.width / 2;
   const originY = canvas.height * 0.38;
 
   const particles = Array.from({ length: COUNT }, () => ({
-    x: originX + (Math.random() - 0.5) * 60,
+    x: originX + (Math.random() - 0.5) * 30,
     y: originY,
-    vx: (Math.random() - 0.5) * 16,
-    vy: -(Math.random() * 12 + 4),
-    r: Math.random() * 5 + 3,
+    vx: (Math.random() - 0.5) * 7,
+    vy: -(Math.random() * 5 + 2),
+    r: Math.random() * 3 + 2,
     color: COLORS[Math.floor(Math.random() * COLORS.length)],
-    spin: (Math.random() - 0.5) * 0.35,
+    spin: (Math.random() - 0.5) * 0.2,
     angle: Math.random() * Math.PI * 2,
   }));
 
