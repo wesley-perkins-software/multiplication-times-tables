@@ -41,14 +41,14 @@ export function bindUi(state) {
   const currentStreakStat = streakValue?.closest('.stat') ?? null;
   const bestStreakStat = bestStreakValue?.closest('.stat') ?? null;
 
-  // Inject "or press Enter" hint after the answer input (hidden on touch-only devices via CSS).
+  // Inject "or press Enter" hint below the submit button (hidden on touch-only devices via CSS).
   let enterHint = null;
-  if (input) {
+  if (submitButton) {
     enterHint = document.createElement('p');
     enterHint.className = 'enter-hint';
     enterHint.setAttribute('aria-hidden', 'true');
     enterHint.textContent = 'or press Enter';
-    input.insertAdjacentElement('afterend', enterHint);
+    submitButton.insertAdjacentElement('afterend', enterHint);
   }
 
   // Inject a session score stat card dynamically so no HTML files need touching.
