@@ -192,7 +192,7 @@ button:focus-visible {
   font-weight: 600;
 }
 .operand-top {
-  padding-right: 0.25rem;
+  padding-right: 0;
 }
 .operand-bottom .operator {
   color: var(--muted);
@@ -562,9 +562,6 @@ button:focus-visible {
   .table-pager {
     justify-content: center;
   }
-}
-.stat-session {
-  justify-content: center;
 }
 @media (prefers-reduced-motion: reduce) {
   .table-nav a,
