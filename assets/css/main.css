@@ -340,17 +340,14 @@ button:focus-visible {
   0% {
     box-shadow: 0 0 0 var(--accent-ring);
     border-color: var(--tileBorder);
-    transform: scale(1);
   }
   35% {
     box-shadow: 0 0 26px var(--accent-ring);
     border-color: var(--accent);
-    transform: scale(1.02);
   }
   100% {
     box-shadow: 0 0 0 var(--accent-ring);
     border-color: var(--tileBorder);
-    transform: scale(1);
   }
 }
 .stat-reset {
