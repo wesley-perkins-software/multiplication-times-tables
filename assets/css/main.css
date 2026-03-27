@@ -326,7 +326,8 @@ button:focus-visible {
   font-size: 1.1rem;
 }
 .stat-text [data-streak],
-.stat-text [data-best-streak] {
+.stat-text [data-best-streak],
+.stat-text [data-session-score] {
   font-size: 1.5rem;
 }
 .stat.is-highlight {
