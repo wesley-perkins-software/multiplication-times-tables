@@ -306,7 +306,7 @@ export function bindUi(state) {
   if (resetBestButton) {
     resetBestButton.addEventListener('click', (event) => {
       event.preventDefault();
-      const ok = window.confirm('Reset your longest streak for this table?');
+      const ok = window.confirm('Reset your longest streak?');
       if (!ok) {
         return;
       }
