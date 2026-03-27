@@ -59,9 +59,18 @@ export function bindUi(state) {
     sessionStat.className = 'stat stat-session';
     sessionStat.innerHTML =
       '<div class="stat-text"><span class="label">Session</span>' +
-      '<span data-session-score aria-live="polite">–</span></div>';
+      '<span data-session-score aria-live="polite">–</span></div>' +
+      '<button type="button" class="stat-reset" data-reset-session>Reset Session</button>';
     statsContainer.appendChild(sessionStat);
     sessionScoreEl = sessionStat.querySelector('[data-session-score]');
+    const resetSessionButton = sessionStat.querySelector('[data-reset-session]');
+    if (resetSessionButton) {
+      resetSessionButton.addEventListener('click', () => {
+        state.totalAnswered = 0;
+        state.totalCorrect = 0;
+        updateStats();
+      });
+    }
   }
 
   const uiState = {

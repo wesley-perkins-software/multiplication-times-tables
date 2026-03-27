@@ -563,9 +563,6 @@ button:focus-visible {
     justify-content: center;
   }
 }
-.stat-session {
-  justify-content: center;
-}
 @media (prefers-reduced-motion: reduce) {
   .table-nav a,
   .home-link,
