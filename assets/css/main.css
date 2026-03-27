@@ -338,16 +338,16 @@ button:focus-visible {
 }
 @keyframes statGlow {
   0% {
-    box-shadow: 0 0 0 var(--accent-ring);
     border-color: var(--tileBorder);
+    background: var(--tile);
   }
   35% {
-    box-shadow: 0 0 26px var(--accent-ring);
     border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent-soft) 35%, var(--tile));
   }
   100% {
-    box-shadow: 0 0 0 var(--accent-ring);
     border-color: var(--tileBorder);
+    background: var(--tile);
   }
 }
 .stat-reset {
