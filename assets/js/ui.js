@@ -1,5 +1,6 @@
 import { checkAnswer, getNextQuestion } from './game.js';
 import { getBestStreak, resetBestStreak, setBestStreak } from './storage.js';
+import { launchConfetti } from './confetti.js';
 
 function getModeKey(config) {
   if (config.mode === 'table' && Number.isFinite(config.tableNumber)) {
@@ -39,6 +40,29 @@ export function bindUi(state) {
   const bestStreakValue = document.querySelector('[data-best-streak]');
   const currentStreakStat = streakValue?.closest('.stat') ?? null;
   const bestStreakStat = bestStreakValue?.closest('.stat') ?? null;
+
+  // Inject "or press Enter" hint after the answer input (hidden on touch-only devices via CSS).
+  let enterHint = null;
+  if (input) {
+    enterHint = document.createElement('p');
+    enterHint.className = 'enter-hint';
+    enterHint.setAttribute('aria-hidden', 'true');
+    enterHint.textContent = 'or press Enter';
+    input.insertAdjacentElement('afterend', enterHint);
+  }
+
+  // Inject a session score stat card dynamically so no HTML files need touching.
+  let sessionScoreEl = null;
+  const statsContainer = document.querySelector('.stats');
+  if (statsContainer) {
+    const sessionStat = document.createElement('div');
+    sessionStat.className = 'stat stat-session';
+    sessionStat.innerHTML =
+      '<div class="stat-text"><span class="label">Session</span>' +
+      '<span data-session-score aria-live="polite">–</span></div>';
+    statsContainer.appendChild(sessionStat);
+    sessionScoreEl = sessionStat.querySelector('[data-session-score]');
+  }
 
   const uiState = {
     isSubmitting: false,
@@ -103,6 +127,12 @@ export function bindUi(state) {
     }
     if (bestStreakValue) {
       bestStreakValue.textContent = String(uiState.bestStreak);
+    }
+    if (sessionScoreEl) {
+      sessionScoreEl.textContent =
+        state.totalAnswered === 0
+          ? '–'
+          : `${state.totalCorrect} / ${state.totalAnswered}`;
     }
   }
 
@@ -179,6 +209,7 @@ export function bindUi(state) {
     if (result.correct) {
       track('correct_answer', { mode: eventMode, table: eventTable });
       setFeedback('Correct!');
+      launchConfetti();
       if (state.currentStreak > previousStreak) {
         triggerHighlight(currentStreakStat, 'currentStreakHighlightTimeoutId');
       }
@@ -228,6 +259,12 @@ export function bindUi(state) {
   if (resetCurrentButton) {
     resetCurrentButton.addEventListener('click', (event) => {
       event.preventDefault();
+      if (state.currentStreak > 0) {
+        const ok = window.confirm('Reset your current streak?');
+        if (!ok) {
+          return;
+        }
+      }
       track('reset_streak', {
         streak_type: 'current',
         mode: eventMode,

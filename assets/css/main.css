@@ -242,6 +242,18 @@ button:focus-visible {
     padding: 0.5rem 0.6rem;
   }
 }
+.enter-hint {
+  margin: 0.3rem 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+}
+@media (hover: none) {
+  /* Hide keyboard hint on touch-only devices — pressing Enter isn't relevant there. */
+  .enter-hint {
+    display: none;
+  }
+}
 .feedback {
   margin-top: 0.75rem;
   min-height: 2.1rem;
@@ -532,6 +544,9 @@ button:focus-visible {
   .table-pager {
     justify-content: center;
   }
+}
+.stat-session {
+  justify-content: center;
 }
 @media (prefers-reduced-motion: reduce) {
   .table-nav a,
