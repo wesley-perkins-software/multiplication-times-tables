@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import TableNav from '../components/TableNav.astro';
+import GameWidget from '../components/GameWidget';
+import { homepageData, SITE_URL } from '../data/tables';
+
+const canonical = `${SITE_URL}/`;
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Mixed Times Table Practice (1–12)",
+    "description": "Free times tables practice for mixed 1–12 multiplication facts with quick questions to build confidence.",
+    "url": canonical,
+    "inLanguage": "en",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "Mixed Times Table Practice (1–12)",
+    "description": homepageData.metaDescription,
+    "educationalLevel": "primary education",
+    "learningResourceType": "drill and practice",
+    "teaches": "multiplication",
+    "inLanguage": "en",
+    "isAccessibleForFree": true,
+    "url": canonical,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Multiplication Times Tables",
+    "url": canonical,
+    "inLanguage": "en",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": homepageData.faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title={homepageData.pageTitle}
+  description={homepageData.metaDescription}
+  canonical={canonical}
+  ogTitle={homepageData.ogTitle}
+  ogDescription={homepageData.ogDescription}
+  bodyDataMode="mixed"
+  bodyDataTheme="mixed"
+  structuredData={structuredData}
+>
+  <Header currentPath="/" />
+
+  <header class="page-header">
+    <h1>{homepageData.h1}</h1>
+    <p class="intro">{homepageData.introParagraph}</p>
+  </header>
+
+  <GameWidget client:only="react" mode="mixed" />
+
+  <TableNav mode="home" />
+
+  <section class="about-practice">
+    <h2>{homepageData.aboutH2}</h2>
+    <div class="about-practice-content">
+      {homepageData.faqs.map((faq) => (
+        <>
+          <h3>{faq.question}</h3>
+          <p>{faq.answer}</p>
+        </>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

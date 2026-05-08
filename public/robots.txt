@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://multiplication-times-tables.com/sitemap.xml

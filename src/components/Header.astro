@@ -1,0 +1,12 @@
+---
+interface Props {
+  currentPath?: string;
+}
+const { currentPath = '/' } = Astro.props;
+---
+
+<header class="site-header">
+  <a class="site-brand" href="/" aria-current={currentPath === '/' ? 'page' : undefined}>
+    multiplication-times-tables.com
+  </a>
+</header>

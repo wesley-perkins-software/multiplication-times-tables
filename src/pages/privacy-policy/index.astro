@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import { SITE_URL } from '../../data/tables';
+
+const canonical = `${SITE_URL}/privacy-policy/`;
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Privacy Policy",
+    "description": "Read how Multiplication Times Tables handles data, local storage, and privacy.",
+    "url": canonical,
+    "inLanguage": "en",
+  },
+];
+---
+
+<BaseLayout
+  title="Privacy Policy | Multiplication Times Tables"
+  description="Read how Multiplication Times Tables handles data, local storage, and privacy."
+  canonical={canonical}
+  bodyDataMode="mixed"
+  bodyDataTheme="mixed"
+  structuredData={structuredData}
+>
+  <Header />
+
+  <header class="page-header">
+    <h1>Privacy Policy</h1>
+    <p class="intro">Last updated: 2026-01-15</p>
+  </header>
+
+  <section class="about-practice">
+    <div class="about-practice-content">
+      <h2>What we collect</h2>
+      <p>We do not require accounts, and we do not collect names, email addresses, or other personal information through this site.</p>
+
+      <h2>Local storage</h2>
+      <p>Your best streak is saved on your device using localStorage so you can keep track of progress. This information stays on your device unless you clear your browser data.</p>
+
+      <h2>Cookies / analytics</h2>
+      <p>We use Google Analytics to understand how the site is used (for example, which pages are visited and when key actions are taken). Google Analytics may set cookies and collect usage data. We use this information in aggregate to improve the site. You can block analytics by adjusting your browser settings or using privacy-focused extensions.</p>
+
+      <h2>Advertising</h2>
+      <p>Ads are not currently shown on this site. If advertising is added in the future, this privacy policy will be updated to explain how it works.</p>
+
+      <h2>Children's privacy</h2>
+      <p>This site is intended for general audiences, including children practicing multiplication with parents or teachers. We do not knowingly collect personal information.</p>
+
+      <h2>Contact</h2>
+      <p>This site does not collect personal information and does not provide direct contact.</p>
+    </div>
+  </section>
+
+  <nav class="table-chooser" aria-label="Return to home">
+    <a class="home-link" href="/">Back to home</a>
+  </nav>
+</BaseLayout>

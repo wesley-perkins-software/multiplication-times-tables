@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import { SITE_URL } from '../../data/tables';
+
+const canonical = `${SITE_URL}/about/`;
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "About",
+    "description": "Learn why Multiplication Times Tables exists and how it supports confident, focused practice.",
+    "url": canonical,
+    "inLanguage": "en",
+  },
+];
+---
+
+<BaseLayout
+  title="About | Multiplication Times Tables"
+  description="Learn why Multiplication Times Tables exists and how it supports confident, focused practice."
+  canonical={canonical}
+  bodyDataMode="mixed"
+  bodyDataTheme="mixed"
+  structuredData={structuredData}
+>
+  <Header />
+
+  <header class="page-header">
+    <h1>About This Times Tables Practice</h1>
+    <p class="intro">Simple, friendly multiplication practice for students, families, and classrooms.</p>
+  </header>
+
+  <section class="about-practice">
+    <div class="about-practice-content">
+      <h2>Why this site exists</h2>
+      <p>This site was created to make multiplication practice simple, fast, and encouraging. It helps learners build confidence by focusing on one question at a time without extra distractions.</p>
+
+      <h2>Who it's for (students/parents/teachers)</h2>
+      <p>Students can practice independently, parents can support quick homework review, and teachers can use it for warmups or group activities. It's designed to be kid-friendly and easy to use on any device.</p>
+
+      <h2>How to use it</h2>
+      <p>Choose mixed practice or a specific times table, answer each question, and try to build a streak. Short daily sessions are a great way to improve recall over time.</p>
+
+      <h2>How streaks work (current vs longest)</h2>
+      <p>Your current streak shows how many questions you've answered correctly in a row during this session. Your longest streak is the best run you've achieved on this device and can help you track progress over time.</p>
+
+      <h2>Contact</h2>
+      <p>This site does not collect personal information and does not provide direct contact.</p>
+    </div>
+  </section>
+
+  <nav class="table-chooser" aria-label="Return to home">
+    <a class="home-link" href="/">Back to home</a>
+  </nav>
+</BaseLayout>

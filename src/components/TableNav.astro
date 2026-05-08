@@ -1,0 +1,48 @@
+---
+import { tables } from '../data/tables';
+
+interface Props {
+  currentTableNumber?: number;
+  showHomeLink?: boolean;
+  showChartLink?: boolean;
+  mode?: 'home' | 'table' | 'chart';
+}
+
+const {
+  currentTableNumber,
+  showHomeLink = true,
+  showChartLink = true,
+  mode = 'table',
+} = Astro.props;
+---
+
+<div class="table-chooser">
+  {mode === 'table' && (
+    <p class="table-chooser-title">Return</p>
+  )}
+  {showHomeLink && (
+    <a class="home-link" href="/" aria-current={mode === 'home' ? 'page' : undefined}>
+      Home (Mixed 1–12)
+    </a>
+  )}
+  {showChartLink && (
+    <a class="chart-link" href="/times-table-chart/" aria-current={mode === 'chart' ? 'page' : undefined}>
+      Times Table Chart
+    </a>
+  )}
+  {mode === 'table' && (
+    <p class="table-chooser-title">OR</p>
+  )}
+  <p class="table-chooser-title">Choose an Individual Times Table</p>
+  <nav class="table-nav" aria-label="Times table pages">
+    {tables.map((t) => (
+      <a
+        href={`/${t.slug}/`}
+        aria-current={t.number === currentTableNumber ? 'page' : undefined}
+        style={`--nt: ${t.colors.accent}; --nt2: ${t.colors.accentDark}; --nt-soft: ${t.colors.accentSoftNav}; --nt-border: ${t.colors.accentBorderNav};`}
+      >
+        {t.label}
+      </a>
+    ))}
+  </nav>
+</div>
