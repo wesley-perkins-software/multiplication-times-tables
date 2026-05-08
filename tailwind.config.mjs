@@ -12,8 +12,8 @@ export default {
         'accent-soft': 'var(--accent-soft)',
       },
       fontFamily: {
-        display: ['"Fraunces"', 'Georgia', 'serif'],
-        body: ['"DM Sans"', 'system-ui', 'sans-serif'],
+        display: ['"Lexend"', 'system-ui', 'sans-serif'],
+        body: ['"Nunito"', 'system-ui', 'sans-serif'],
       },
       animation: {
         'stat-glow': 'statGlow 750ms ease-out',
