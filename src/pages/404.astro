@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import { SITE_URL } from '../data/tables';
+
+const canonical = `${SITE_URL}/404/`;
+---
+
+<BaseLayout
+  title="Page Not Found | Multiplication Times Tables"
+  description="The page you were looking for could not be found."
+  canonical={canonical}
+  robots="noindex,nofollow"
+  bodyDataMode="mixed"
+  bodyDataTheme="mixed"
+  structuredData={[]}
+>
+  <Header />
+
+  <header class="page-header">
+    <span class="ghost-number" aria-hidden="true">404</span>
+    <h1>Page Not Found</h1>
+    <p class="intro">Sorry, we couldn't find that page.</p>
+  </header>
+
+  <nav class="table-chooser" aria-label="Return to home" style="text-align:center; margin-top: 2rem;">
+    <a class="home-link" href="/">Go to home page</a>
+  </nav>
+</BaseLayout>

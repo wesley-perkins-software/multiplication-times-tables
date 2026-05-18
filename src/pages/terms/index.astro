@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import { SITE_URL } from '../../data/tables';
+
+const canonical = `${SITE_URL}/terms/`;
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Terms of Use",
+    "description": "Review the terms for using the Multiplication Times Tables practice site.",
+    "url": canonical,
+    "inLanguage": "en",
+  },
+];
+---
+
+<BaseLayout
+  title="Terms of Use | Multiplication Times Tables"
+  description="Review the terms for using the Multiplication Times Tables practice site."
+  canonical={canonical}
+  bodyDataMode="mixed"
+  bodyDataTheme="mixed"
+  structuredData={structuredData}
+>
+  <Header />
+
+  <header class="page-header">
+    <h1>Terms of Use</h1>
+    <p class="intro">Last updated: 2026-01-13</p>
+  </header>
+
+  <section class="about-practice">
+    <div class="about-practice-content">
+      <h2>Acceptance of terms</h2>
+      <p>By using this site, you agree to these terms. If you do not agree, please do not use the site.</p>
+
+      <h2>Educational use / permitted use</h2>
+      <p>This site is free to use for personal learning and classroom practice. You may share links with students or families for educational purposes.</p>
+
+      <h2>No warranties</h2>
+      <p>The site is provided "as-is" without warranties of any kind. We do our best to keep it working, but we cannot guarantee it will always be available or error-free.</p>
+
+      <h2>Limitation of liability</h2>
+      <p>We are not responsible for any losses or damages that may result from using this site. Please use the site at your own risk.</p>
+
+      <h2>Changes to the site / terms</h2>
+      <p>We may update the site or these terms from time to time. If changes are made, the updated date will be shown above.</p>
+
+      <h2>Contact</h2>
+      <p>This site does not collect personal information and does not provide direct contact.</p>
+    </div>
+  </section>
+
+  <nav class="table-chooser" aria-label="Return to home">
+    <a class="home-link" href="/">Back to home</a>
+  </nav>
+</BaseLayout>

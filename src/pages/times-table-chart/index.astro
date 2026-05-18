@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import TableNav from '../../components/TableNav.astro';
+import TimesTableChart from '../../components/TimesTableChart.astro';
+import { SITE_URL, SITE_NAME } from '../../data/tables';
+
+const canonical = `${SITE_URL}/times-table-chart/`;
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Times Table Chart 1–12",
+    "description": "Free times table chart showing every multiplication fact from 1×1 to 12×12.",
+    "url": canonical,
+    "inLanguage": "en",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": `${SITE_URL}/` },
+      { "@type": "ListItem", "position": 2, "name": "Times Table Chart", "item": canonical },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "Times Table Chart 1–12",
+    "description": "A complete multiplication chart showing all times table facts from 1 to 12, for students learning multiplication.",
+    "educationalLevel": "primary education",
+    "learningResourceType": "reference chart",
+    "teaches": "multiplication",
+    "inLanguage": "en",
+    "isAccessibleForFree": true,
+    "url": canonical,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a times table chart?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A times table chart, also called a multiplication chart or multiplication grid, shows every multiplication fact from 1×1 to 12×12 in a single table. Each row and column is labelled with a number from 1 to 12, and the cell where they meet shows their product.",
+        },
+      },
+      {
+        "@type": "Question",
+        "name": "How do you read a multiplication chart?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Find the first number along the top row and the second number down the left column. Follow each to where they meet in the grid — that cell shows the answer. For example, to find 7 × 8, find 7 across the top and 8 down the left side; the cell shows 56.",
+        },
+      },
+      {
+        "@type": "Question",
+        "name": "How many multiplication facts are in the 1–12 times table chart?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The full 1–12 chart contains 144 multiplication facts. Because multiplication is commutative (3×4 = 4×3), there are 78 unique facts once duplicates are removed. The 12 cells along the diagonal are the square numbers: 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144.",
+        },
+      },
+      {
+        "@type": "Question",
+        "name": "How do I use this chart to learn multiplication?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use the chart to look up any fact you are unsure of, then use the practice links below to drill that specific table with interactive questions. Combining the chart as a reference with active practice is one of the most effective ways to build multiplication fluency.",
+        },
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Times Table Chart 1–12 | Free Multiplication Grid"
+  description="Free times table chart showing every multiplication fact from 1×1 to 12×12. Use the grid to look up answers, spot patterns, and practice each table."
+  canonical={canonical}
+  bodyDataMode="mixed"
+  bodyDataTheme="mixed"
+  structuredData={structuredData}
+>
+  <Header />
+
+  <header class="page-header">
+    <h1>Times Table Chart 1–12</h1>
+    <p class="intro">Every multiplication fact from 1×1 to 12×12 in one grid. Find a number across the top and down the side — where they meet is the answer.</p>
+  </header>
+
+  <section class="chart-section" aria-label="Multiplication chart 1 to 12">
+    <TimesTableChart />
+  </section>
+
+  <section class="chart-practice-links">
+    <h2>Practice Each Times Table</h2>
+    <p class="chart-practice-intro">Click any table below to practice with interactive questions and build your streak.</p>
+    <TableNav showHomeLink={true} showChartLink={false} mode="chart" />
+  </section>
+
+  <section class="about-practice">
+    <h2>About This Times Table Chart</h2>
+    <div class="about-practice-content">
+      <h3>What is a times table chart?</h3>
+      <p>A times table chart, also called a multiplication chart or multiplication grid, shows every multiplication fact from 1×1 to 12×12 in a single table. Each row and column is labelled with a number from 1 to 12, and the cell where they meet shows their product. The full chart contains 144 multiplication facts, or 78 unique facts once you account for the fact that 3×4 and 4×3 give the same answer.</p>
+
+      <h3>How do you read a multiplication chart?</h3>
+      <p>Find the first number along the top row and the second number down the left column. Follow each to where they meet in the grid — that cell shows the answer. For example, to find 7×8, find 7 across the top and 8 down the left side; where they meet shows 56. You can also reverse it: find 8 across the top and 7 down the side, and the answer is the same.</p>
+
+      <h3>How many multiplication facts are in a 1–12 times table chart?</h3>
+      <p>The full 1–12 chart contains 144 multiplication facts (12 rows × 12 columns). Because multiplication is commutative — meaning 3×4 and 4×3 give the same answer — there are only 78 unique facts. The 12 cells along the main diagonal (1×1, 2×2, all the way to 12×12) are the square numbers: 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, and 144.</p>
+
+      <h3>How do I use this chart to learn multiplication?</h3>
+      <p>Use the chart to look up any fact you are unsure of, then click the matching practice link above to drill that specific table with interactive questions. Combining the chart as a reference with active retrieval practice is one of the most effective methods for building long-term multiplication fluency.</p>
+    </div>
+  </section>
+</BaseLayout>

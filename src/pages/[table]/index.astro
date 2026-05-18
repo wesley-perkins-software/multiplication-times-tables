@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import TableNav from '../../components/TableNav.astro';
+import GameWidget from '../../components/GameWidget';
+import { tables, SITE_URL } from '../../data/tables';
+
+export function getStaticPaths() {
+  return tables.map((t) => ({
+    params: { table: t.slug },
+    props: { tableData: t },
+  }));
+}
+
+const { tableData } = Astro.props;
+const canonical = `${SITE_URL}/${tableData.slug}/`;
+const N = tableData.number;
+
+const miniChartRows = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": tableData.pageTitle,
+    "description": tableData.metaDescription,
+    "educationalLevel": "primary education",
+    "learningResourceType": "drill and practice",
+    "teaches": "multiplication",
+    "inLanguage": "en",
+    "isAccessibleForFree": true,
+    "url": canonical,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": tableData.pageTitle,
+    "description": tableData.metaDescription,
+    "url": canonical,
+    "inLanguage": "en",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": `${SITE_URL}/` },
+      { "@type": "ListItem", "position": 2, "name": tableData.pageTitle, "item": canonical },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": tableData.faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title={tableData.pageTitle}
+  description={tableData.metaDescription}
+  canonical={canonical}
+  ogTitle={tableData.ogTitle}
+  ogDescription={tableData.ogDescription}
+  bodyDataMode="table"
+  bodyDataTheme={`table-${N}`}
+  bodyDataTable={N}
+  structuredData={structuredData}
+>
+  <Header />
+
+  <header class="page-header">
+    <span class="ghost-number" aria-hidden="true">{N}</span>
+    <h1>{tableData.h1}</h1>
+    <p class="intro">{tableData.introParagraph}</p>
+  </header>
+
+  <GameWidget client:only="react" mode="table" tableNumber={N} />
+
+  <nav class={`table-pager${tableData.prevTable === null ? ' align-right' : ''}`} aria-label="Table navigation">
+    {tableData.prevTable !== null && (
+      <a class="pager-link" href={`/${tableData.prevTable}-times-table/`}>
+        ← {tableData.prevTable} Times Table
+      </a>
+    )}
+    {tableData.nextTable !== null && (
+      <a class="pager-link" href={`/${tableData.nextTable}-times-table/`}>
+        {tableData.nextTable} Times Table →
+      </a>
+    )}
+  </nav>
+
+  <section class="table-chart" aria-label={`${N} times table chart`}>
+    <h2>{N} Times Table Chart</h2>
+    <ol class="chart-grid">
+      {miniChartRows.map((r) => (
+        <li>
+          <span>{N} × {r}</span>
+          <strong>= {N * r}</strong>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="about-practice">
+    <h2>Tips for the {N} Times Table</h2>
+    <div class="about-practice-content">
+      <p>{tableData.tips.introParagraph}</p>
+      <ul class="facts-list">
+        {tableData.tips.bulletPoints.map((point) => (
+          <li set:html={point} />
+        ))}
+      </ul>
+      <p>{tableData.tips.editorialParagraph}</p>
+    </div>
+  </section>
+
+  <TableNav currentTableNumber={N} mode="table" />
+
+  <section class="about-practice">
+    <h2>{tableData.aboutH2}</h2>
+    <div class="about-practice-content">
+      {tableData.faqs.map((faq) => (
+        <>
+          <h3>{faq.question}</h3>
+          <p>{faq.answer}</p>
+        </>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
